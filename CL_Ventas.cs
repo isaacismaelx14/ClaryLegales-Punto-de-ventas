@@ -26,7 +26,7 @@ namespace ClaryLegales_Ventas
         {
             tituloSet("Test");
             verificarCombo();
-       
+            dbStatus();
         }
 
         public CL_Ventas()
@@ -62,7 +62,7 @@ namespace ClaryLegales_Ventas
         private void dbStatus()
         {
             Connection conexion = new Connection();
-            mostrarError(conexion.ConnectionMysql().State.ToString());
+            //mostrarError(conexion.ConnectionMysql().State.ToString());
             try
             {
                 conexion.ConnectionMysql().Open();
@@ -70,8 +70,7 @@ namespace ClaryLegales_Ventas
             }
             catch (Exception ex)
             {
-                time = 1000;
-                mostrarError(ex.Message);
+                mostrarError(ex.Message,100);
                 error = ex.Message;
                 ConnectionState = false;
 
@@ -228,17 +227,12 @@ namespace ClaryLegales_Ventas
             obtenerHoraActual();
         }
 
-        private void mostrarError(string Text_Error)
+        private void mostrarError(string Text_Error, int tiempo)
         {
-            
+            time = tiempo;
             timer2.Enabled = true;
             Error_Label.Text = Text_Error;
-         //   ErrorLog errolog = new ErrorLog();
-           
-            //errolog.Show();
-           // errolog.MessageLog(Text_Error, time);
-
-            
+          
         }
 
         private void errorSolutions()
@@ -249,7 +243,7 @@ namespace ClaryLegales_Ventas
 
         private void Obtengo()
         {
-            dbStatus();
+           
             Connection2 connection2 = new Connection2();
             if(ConnectionState == true)
             {
@@ -261,21 +255,29 @@ namespace ClaryLegales_Ventas
                 }
                 catch
                 {
-                    mostrarError("El valor incertado no es valido");
+                    mostrarError("El valor incertado no es valido",35);
                 }
 
                 if (cl_inventario.Text == "#")
                 {
+                    dbStatus();
+                    if(ConnectionState == true)
+                    {
+                        cb_articulo.Text = null;
+                        cl_inventario.Text = "";
+                        cl_precio.Text = "";
+                        mostrarError("El código no existe",35);
+                    }
+                    else
+                    {
+                        mostrarError(error,100);
+                    }
 
-                    cb_articulo.Text = null;
-                    cl_inventario.Text = "";
-                    cl_precio.Text = "";
-                    mostrarError("El código no existe");
                 }
             }
             else
             {
-                mostrarError(error);
+                mostrarError(error,100);
                 cl_inventario.Text = error;
             }
         }
@@ -309,6 +311,11 @@ namespace ClaryLegales_Ventas
             {
                 AbrirWebAyuda abrirWeb = new AbrirWebAyuda();
                 abrirWeb.E001();
+            }
+          else if (Error_Label.Text == "El valor incertado no es valido")
+            {
+                AbrirWebAyuda abrirWeb = new AbrirWebAyuda();
+                abrirWeb.E002();
             }
         }
     }
