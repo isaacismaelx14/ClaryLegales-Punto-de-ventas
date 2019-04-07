@@ -38,7 +38,6 @@
             this.tabs = new System.Windows.Forms.TabControl();
             this.tabVentas = new System.Windows.Forms.TabPage();
             this.label28 = new System.Windows.Forms.Label();
-            this.ventas1 = new ClaryLegales_Ventas.Ventanas.Ventas();
             this.Productos = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -114,12 +113,21 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeClarylegalesPuntoDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel_info = new System.Windows.Forms.Panel();
+            this.Error_Label = new System.Windows.Forms.LinkLabel();
             this.Error_Labels = new System.Windows.Forms.Label();
             this.Fecha_actual = new System.Windows.Forms.Label();
             this.Hora_actual = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.Error_Label = new System.Windows.Forms.LinkLabel();
+            this.tb_Codigo_Ventas = new System.Windows.Forms.TextBox();
+            this.Text_1 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.tb_Cantidad_ventas = new System.Windows.Forms.TextBox();
+            this.bt_Enter_Ventas = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.lb_Info_Ventas = new System.Windows.Forms.Label();
+            this.abrirPaginaDeClarylegalesPuntoDeVenrtasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.solucionarErroresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Top_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -136,6 +144,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.panel_info.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // Top_Panel
@@ -192,6 +201,7 @@
             // Contenedor
             // 
             this.Contenedor.Controls.Add(this.tabs);
+            this.Contenedor.Controls.Add(this.label28);
             this.Contenedor.Controls.Add(this.menuStrip1);
             this.Contenedor.Controls.Add(this.panel_info);
             this.Contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -216,8 +226,13 @@
             // 
             // tabVentas
             // 
-            this.tabVentas.Controls.Add(this.label28);
-            this.tabVentas.Controls.Add(this.ventas1);
+            this.tabVentas.Controls.Add(this.lb_Info_Ventas);
+            this.tabVentas.Controls.Add(this.dataGridView2);
+            this.tabVentas.Controls.Add(this.bt_Enter_Ventas);
+            this.tabVentas.Controls.Add(this.label29);
+            this.tabVentas.Controls.Add(this.tb_Cantidad_ventas);
+            this.tabVentas.Controls.Add(this.Text_1);
+            this.tabVentas.Controls.Add(this.tb_Codigo_Ventas);
             this.tabVentas.Location = new System.Drawing.Point(4, 26);
             this.tabVentas.Name = "tabVentas";
             this.tabVentas.Padding = new System.Windows.Forms.Padding(3);
@@ -230,20 +245,13 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(367, 213);
+            this.label28.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label28.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label28.Location = new System.Drawing.Point(1120, 7);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(54, 17);
+            this.label28.Size = new System.Drawing.Size(41, 13);
             this.label28.TabIndex = 1;
             this.label28.Text = "label28";
-            // 
-            // ventas1
-            // 
-            this.ventas1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ventas1.Location = new System.Drawing.Point(3, 3);
-            this.ventas1.Margin = new System.Windows.Forms.Padding(4);
-            this.ventas1.Name = "ventas1";
-            this.ventas1.Size = new System.Drawing.Size(1160, 544);
-            this.ventas1.TabIndex = 0;
             // 
             // Productos
             // 
@@ -532,7 +540,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(302, 34);
+            this.tabPage2.Size = new System.Drawing.Size(302, 514);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Editar";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -778,7 +786,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 26);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(302, 34);
+            this.tabPage3.Size = new System.Drawing.Size(302, 514);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Eliminar";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -790,7 +798,7 @@
             this.label25.BackColor = System.Drawing.Color.Maroon;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.label25.ForeColor = System.Drawing.Color.White;
-            this.label25.Location = new System.Drawing.Point(143, 981);
+            this.label25.Location = new System.Drawing.Point(143, 1465);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(156, 39);
             this.label25.TabIndex = 59;
@@ -1019,7 +1027,11 @@
             // ayudaToolStripMenuItem
             // 
             this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.acercaDeClarylegalesPuntoDeVentasToolStripMenuItem});
+            this.acercaDeClarylegalesPuntoDeVentasToolStripMenuItem,
+            this.abrirPaginaDeClarylegalesPuntoDeVenrtasToolStripMenuItem,
+            this.solucionarErroresToolStripMenuItem});
+            this.ayudaToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.ayudaToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.White;
             this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
             this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.ayudaToolStripMenuItem.Text = "Ayuda";
@@ -1043,6 +1055,20 @@
             this.panel_info.Name = "panel_info";
             this.panel_info.Size = new System.Drawing.Size(1174, 30);
             this.panel_info.TabIndex = 2;
+            // 
+            // Error_Label
+            // 
+            this.Error_Label.AutoSize = true;
+            this.Error_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.Error_Label.LinkColor = System.Drawing.Color.White;
+            this.Error_Label.Location = new System.Drawing.Point(4, 7);
+            this.Error_Label.Name = "Error_Label";
+            this.Error_Label.Size = new System.Drawing.Size(197, 17);
+            this.Error_Label.TabIndex = 3;
+            this.Error_Label.TabStop = true;
+            this.Error_Label.Text = "ClaryLegales Punto de ventas";
+            this.Error_Label.Visible = false;
+            this.Error_Label.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Error_Label_LinkClicked);
             // 
             // Error_Labels
             // 
@@ -1092,19 +1118,88 @@
             // 
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // Error_Label
+            // tb_Codigo_Ventas
             // 
-            this.Error_Label.AutoSize = true;
-            this.Error_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.Error_Label.LinkColor = System.Drawing.Color.White;
-            this.Error_Label.Location = new System.Drawing.Point(4, 7);
-            this.Error_Label.Name = "Error_Label";
-            this.Error_Label.Size = new System.Drawing.Size(197, 17);
-            this.Error_Label.TabIndex = 3;
-            this.Error_Label.TabStop = true;
-            this.Error_Label.Text = "ClaryLegales Punto de ventas";
-            this.Error_Label.Visible = false;
-            this.Error_Label.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Error_Label_LinkClicked);
+            this.tb_Codigo_Ventas.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.25F);
+            this.tb_Codigo_Ventas.Location = new System.Drawing.Point(146, 31);
+            this.tb_Codigo_Ventas.Name = "tb_Codigo_Ventas";
+            this.tb_Codigo_Ventas.Size = new System.Drawing.Size(465, 37);
+            this.tb_Codigo_Ventas.TabIndex = 2;
+            this.tb_Codigo_Ventas.TextChanged += new System.EventHandler(this.tb_Codigo_Ventas_TextChanged);
+            this.tb_Codigo_Ventas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_Codigo_Ventas_KeyPress);
+            // 
+            // Text_1
+            // 
+            this.Text_1.AutoSize = true;
+            this.Text_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.25F);
+            this.Text_1.Location = new System.Drawing.Point(46, 34);
+            this.Text_1.Name = "Text_1";
+            this.Text_1.Size = new System.Drawing.Size(94, 30);
+            this.Text_1.TabIndex = 3;
+            this.Text_1.Text = "Código";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.25F);
+            this.label29.Location = new System.Drawing.Point(617, 34);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(109, 30);
+            this.label29.TabIndex = 5;
+            this.label29.Text = "cantidad";
+            // 
+            // tb_Cantidad_ventas
+            // 
+            this.tb_Cantidad_ventas.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.25F);
+            this.tb_Cantidad_ventas.Location = new System.Drawing.Point(732, 34);
+            this.tb_Cantidad_ventas.Name = "tb_Cantidad_ventas";
+            this.tb_Cantidad_ventas.Size = new System.Drawing.Size(77, 37);
+            this.tb_Cantidad_ventas.TabIndex = 4;
+            // 
+            // bt_Enter_Ventas
+            // 
+            this.bt_Enter_Ventas.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.25F);
+            this.bt_Enter_Ventas.ForeColor = System.Drawing.Color.Green;
+            this.bt_Enter_Ventas.Location = new System.Drawing.Point(828, 34);
+            this.bt_Enter_Ventas.Name = "bt_Enter_Ventas";
+            this.bt_Enter_Ventas.Size = new System.Drawing.Size(99, 37);
+            this.bt_Enter_Ventas.TabIndex = 6;
+            this.bt_Enter_Ventas.Text = "Enter";
+            this.bt_Enter_Ventas.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(51, 98);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(1081, 411);
+            this.dataGridView2.TabIndex = 7;
+            // 
+            // lb_Info_Ventas
+            // 
+            this.lb_Info_Ventas.AutoSize = true;
+            this.lb_Info_Ventas.Location = new System.Drawing.Point(146, 75);
+            this.lb_Info_Ventas.Name = "lb_Info_Ventas";
+            this.lb_Info_Ventas.Size = new System.Drawing.Size(54, 17);
+            this.lb_Info_Ventas.TabIndex = 8;
+            this.lb_Info_Ventas.Text = "label30";
+            // 
+            // abrirPaginaDeClarylegalesPuntoDeVenrtasToolStripMenuItem
+            // 
+            this.abrirPaginaDeClarylegalesPuntoDeVenrtasToolStripMenuItem.Name = "abrirPaginaDeClarylegalesPuntoDeVenrtasToolStripMenuItem";
+            this.abrirPaginaDeClarylegalesPuntoDeVenrtasToolStripMenuItem.Size = new System.Drawing.Size(278, 22);
+            this.abrirPaginaDeClarylegalesPuntoDeVenrtasToolStripMenuItem.Text = "clarylegales punto de venrtas/web";
+            this.abrirPaginaDeClarylegalesPuntoDeVenrtasToolStripMenuItem.Click += new System.EventHandler(this.abrirPaginaDeClarylegalesPuntoDeVenrtasToolStripMenuItem_Click);
+            // 
+            // solucionarErroresToolStripMenuItem
+            // 
+            this.solucionarErroresToolStripMenuItem.Name = "solucionarErroresToolStripMenuItem";
+            this.solucionarErroresToolStripMenuItem.Size = new System.Drawing.Size(278, 22);
+            this.solucionarErroresToolStripMenuItem.Text = "Lista de errores";
+            this.solucionarErroresToolStripMenuItem.Click += new System.EventHandler(this.solucionarErroresToolStripMenuItem_Click);
             // 
             // CL_Ventas
             // 
@@ -1147,6 +1242,7 @@
             this.menuStrip1.PerformLayout();
             this.panel_info.ResumeLayout(false);
             this.panel_info.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1170,7 +1266,6 @@
         private System.Windows.Forms.ToolStripMenuItem verToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem ventasToolStripMenuItem;
-        private Ventanas.Ventas ventas1;
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acercaDeClarylegalesPuntoDeVentasToolStripMenuItem;
         private System.Windows.Forms.Label label7;
@@ -1243,6 +1338,15 @@
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.LinkLabel Error_Label;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button bt_Enter_Ventas;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox tb_Cantidad_ventas;
+        private System.Windows.Forms.Label Text_1;
+        private System.Windows.Forms.TextBox tb_Codigo_Ventas;
+        private System.Windows.Forms.Label lb_Info_Ventas;
+        private System.Windows.Forms.ToolStripMenuItem abrirPaginaDeClarylegalesPuntoDeVenrtasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem solucionarErroresToolStripMenuItem;
     }
 }
 

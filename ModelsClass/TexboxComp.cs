@@ -44,5 +44,15 @@ namespace ClaryLegales_Ventas.ModelsClass
             else if ((e.KeyChar == '.') && (!textBox.Text.Contains("."))) { e.Handled = false; }
             else { e.Handled = true; }
         }
+
+        public void onlyNumber(TextBox textBox, KeyPressEventArgs e)
+        {
+                //Solo permite datos numericos
+                if (char.IsDigit(e.KeyChar)) { e.Handled = false; }
+                else if (char.IsControl(e.KeyChar)) { e.Handled = false; }
+                else if ((e.KeyChar == '.') && (!textBox.Text.Contains("."))) { e.Handled = true; }
+                else { e.Handled = true; }
+            
+        }
     }
 }

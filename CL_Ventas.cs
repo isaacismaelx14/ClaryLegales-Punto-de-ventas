@@ -1,5 +1,6 @@
 ﻿using ClaryLegales_Ventas.Conexion;
 using ClaryLegales_Ventas.Ejecutar;
+using ClaryLegales_Ventas.ModelsClass;
 using ClaryLegales_Ventas.Ventanas;
 using System;
 using System.Collections.Generic;
@@ -20,13 +21,16 @@ namespace ClaryLegales_Ventas
         bool ConnectionState;
         string error;
         int time = 35;
-       
+        AbrirWebAyuda abrirWeb = new AbrirWebAyuda();
+        TexboxComp texboxComp = new TexboxComp();
+
         //cargando
         private void CL_Ventas_Load(object sender, EventArgs e)
         {
             tituloSet("Test");
             verificarCombo();
             dbStatus();
+            ValorInicial_Ventas();
         }
 
         public CL_Ventas()
@@ -235,56 +239,22 @@ namespace ClaryLegales_Ventas
           
         }
 
-        private void errorSolutions()
-        {
-          
-        }
-
-
-        private void Obtengo()
-        {
-           
-            Connection2 connection2 = new Connection2();
-            if(ConnectionState == true)
-            {
-                try
-                {
-                    cb_articulo.Text = connection2.CN_3(Convert.ToInt32(cb_Id.Text))[0];
-                    cl_precio.Text = connection2.CN_3(Convert.ToInt32(cb_Id.Text))[1];
-                    cl_inventario.Text = connection2.CN_3(Convert.ToInt32(cb_Id.Text))[2];
-                }
-                catch
-                {
-                    mostrarError("El valor incertado no es valido",35);
-                }
-
-                if (cl_inventario.Text == "#")
-                {
-                    dbStatus();
-                    if(ConnectionState == true)
-                    {
-                        cb_articulo.Text = null;
-                        cl_inventario.Text = "";
-                        cl_precio.Text = "";
-                        mostrarError("El código no existe",35);
-                    }
-                    else
-                    {
-                        mostrarError(error,100);
-                    }
-
-                }
-            }
-            else
-            {
-                mostrarError(error,100);
-                cl_inventario.Text = error;
-            }
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            Obtengo();
+           
+        }
+
+
+        private void Error_Label_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (Error_Label.Text == "Unable to connect to any of the specified MySQL hosts.")
+            {
+                abrirWeb.E001();
+            }
+          else if (Error_Label.Text == "El valor incertado no es valido")
+            {
+                abrirWeb.E002();
+            }
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -305,18 +275,96 @@ namespace ClaryLegales_Ventas
             label28.Text = time.ToString();
         }
 
-        private void Error_Label_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void solucionarErroresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Error_Label.Text == "Unable to connect to any of the specified MySQL hosts.")
-            {
-                AbrirWebAyuda abrirWeb = new AbrirWebAyuda();
-                abrirWeb.E001();
-            }
-          else if (Error_Label.Text == "El valor incertado no es valido")
-            {
-                AbrirWebAyuda abrirWeb = new AbrirWebAyuda();
-                abrirWeb.E002();
-            }
+            abrirWeb.Eror_Page();
         }
+
+        private void abrirPaginaDeClarylegalesPuntoDeVenrtasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            abrirWeb.Web();
+        }
+        /*
+         * End of this part
+         */
+
+        #region Ventas
+
+
+        string Producto;
+        string Precio;
+        string Inventario;
+        string Text_output;
+
+        private void Obtengo()
+        {
+
+            Connection2 connection2 = new Connection2();
+            if (ConnectionState == true)
+            {
+                try
+                {
+                    Producto = connection2.CN_3(Convert.ToInt32(tb_Codigo_Ventas.Text))[0];
+                    Precio = connection2.CN_3(Convert.ToInt32(tb_Codigo_Ventas.Text))[1];
+                    Inventario = connection2.CN_3(Convert.ToInt32(tb_Codigo_Ventas.Text))[2];
+
+                    Text_output = Producto + " RD$" + Precio + ".00";
+
+
+                    if (Producto == "#")
+                    {
+                        dbStatus();
+                        if (ConnectionState == true)
+                        {
+                            bt_Enter_Ventas.Enabled = false;
+                            Text_output = "";
+                            mostrarError("El código no existe", 35);
+                            
+                        }
+                        else
+                        {
+                            bt_Enter_Ventas.Enabled = false;
+                            mostrarError(error, 100);
+                        }
+                    }
+                    else
+                    {
+                        bt_Enter_Ventas.Enabled = true;
+                    }
+
+                }
+                catch
+                {
+                    ValorInicial_Ventas();
+                    mostrarError("El valor incertado no es valido", 35);    
+                }
+            }
+            else
+            {
+                mostrarError(error, 100);
+            }
+
+            lb_Info_Ventas.Text = Text_output;
+        }
+
+        private void ValorInicial_Ventas()
+        {
+            bt_Enter_Ventas.Enabled = false;
+            lb_Info_Ventas.Text = Text_output = "";
+        }
+
+        private void tb_Codigo_Ventas_TextChanged(object sender, EventArgs e)
+        {
+            Obtengo();
+        }
+
+        private void tb_Codigo_Ventas_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            texboxComp.onlyNumber(tb_Codigo_Ventas, e);
+        }
+
+
+        #endregion
+
     }
 }
