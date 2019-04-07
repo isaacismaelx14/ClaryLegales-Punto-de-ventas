@@ -98,6 +98,18 @@ header a:hover{
   font-weight:bold;
 }
 
+article ul a:hover{
+  color:#325091;
+  font-weight:bold;
+  background: #e8491d;
+}
+article ul a{
+  color:#202020;
+  text-decoration:none;
+  font-size:16px;
+}
+
+
 /* Cabecera con imagen */
 #cabecera{
   min-height:400px;
